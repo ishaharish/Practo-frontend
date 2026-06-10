@@ -6,7 +6,7 @@ pipeline {
 
         ACR     = 'ishaacr'
         RG      = 'practo-rg'
-        AKS     = 'practo-aks'
+        AKS     = 'fullstack-aks'
         IMAGE   = 'product-frontend'
 
         AZ_CLIENT_ID     = credentials('azure-client-id')
