@@ -63,7 +63,7 @@ export class PatientDetailsComponent implements OnInit {
   fetchPatientTimeline() {
     console.log(`Fetching timeline for patient ID: ${this.patientId}`);
     this.errorMessage = null;
-    this.http.get<any>(`http://localhost:5229/api/doctors/dashboard/patients/${this.patientId}`)
+    this.http.get<any>(`http://localhost:8081/api/doctors/dashboard/patients/${this.patientId}`)
       .subscribe({
         next: (res) => {
           console.log('Received patient data:', res);
@@ -92,7 +92,7 @@ export class PatientDetailsComponent implements OnInit {
       prescription: this.clinicalForm.prescription
     };
 
-    this.http.post(`http://localhost:5229/api/appointments/${latestApptId}/medical-record`, payload)
+    this.http.post(`http://localhost:8081/api/appointments/${latestApptId}/medical-record`, payload)
       .subscribe({
         next: () => {
           this.displayToast('Clinical record saved successfully!');
@@ -108,7 +108,7 @@ export class PatientDetailsComponent implements OnInit {
 
   deletePatient() {
     if (confirm('Are you sure you want to delete this patient and all of their historical records? This cannot be undone.')) {
-      this.http.delete(`http://localhost:5229/api/doctors/dashboard/patients/${this.patientId}`)
+      this.http.delete(`http://localhost:8081/api/doctors/dashboard/patients/${this.patientId}`)
         .subscribe({
           next: () => {
             this.displayToast('Patient deleted successfully!');
@@ -142,7 +142,7 @@ export class PatientDetailsComponent implements OnInit {
       nextVisitDate: localDateTimeStr
     };
 
-    this.http.post('http://localhost:5229/api/ray/appointments/next-visit', payload)
+    this.http.post('http://localhost:8081/api/ray/appointments/next-visit', payload)
       .subscribe({
         next: () => {
           this.displayToast('Next visit scheduled and added to calendar!');

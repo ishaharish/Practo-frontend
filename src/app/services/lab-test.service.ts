@@ -33,7 +33,7 @@ export interface LabTestBookingDto {
   providedIn: 'root'
 })
 export class LabTestService {
-  private apiUrl = 'http://localhost:5229/api/labtests';
+  private apiUrl = 'http://localhost:8081/api/labtests';
 
   constructor(private http: HttpClient) { }
 
