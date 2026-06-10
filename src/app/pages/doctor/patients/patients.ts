@@ -48,7 +48,7 @@ export class DoctorPatientsComponent implements OnInit {
   }
 
   fetchPatients() {
-    this.http.get<any[]>(`http://localhost:8081/api/doctors/dashboard/patients`)
+    this.http.get<any[]>(`/api/doctors/dashboard/patients`)
       .subscribe({
         next: (res) => {
           this.patients = res;
@@ -72,7 +72,7 @@ export class DoctorPatientsComponent implements OnInit {
   submitPatient() {
     if (!this.newPatient.fullName || !this.newPatient.mobile) return;
 
-    this.http.post('http://localhost:8081/api/doctors/dashboard/patients', this.newPatient)
+    this.http.post('/api/doctors/dashboard/patients', this.newPatient)
       .subscribe({
         next: (res: any) => {
           this.toggleAddModal();

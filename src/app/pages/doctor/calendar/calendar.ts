@@ -126,7 +126,7 @@ export class DoctorCalendarComponent implements OnInit {
   }
 
   fetchDoctors() {
-    this.http.get<any[]>('http://localhost:8081/api/doctors')
+    this.http.get<any[]>('/api/doctors')
       .subscribe({
         next: (res) => {
           this.doctors = res;
@@ -210,7 +210,7 @@ export class DoctorCalendarComponent implements OnInit {
       end = this.weekDays[this.weekDays.length - 1].toISOString();
     }
     
-    let url = `http://localhost:8081/api/ray/calendar?startDate=${start}&endDate=${end}`;
+    let url = `/api/ray/calendar?startDate=${start}&endDate=${end}`;
     if (this.selectedDoctorId) {
       url += `&specificDoctorId=${this.selectedDoctorId}`;
     }
@@ -358,7 +358,7 @@ export class DoctorCalendarComponent implements OnInit {
     const localDateStr = `${newDate.getFullYear()}-${(newDate.getMonth()+1).toString().padStart(2, '0')}-${newDate.getDate().toString().padStart(2, '0')}`;
     const newTimeSpan = `${newDate.getHours().toString().padStart(2, '0')}:${newDate.getMinutes().toString().padStart(2, '0')}:00`;
       
-    this.http.put(`http://localhost:8081/api/ray/appointments/${this.rescheduleData.appointment.id}/reschedule`, {
+    this.http.put(`/api/ray/appointments/${this.rescheduleData.appointment.id}/reschedule`, {
       newDate: localDateStr,
       newStartTime: newTimeSpan,
       notifyPatient: this.rescheduleData.notifyPatientViaEmail || this.rescheduleData.notifyPatientViaSms,
@@ -380,7 +380,7 @@ export class DoctorCalendarComponent implements OnInit {
 
   deleteAppointment(id: number) {
     if (confirm("Are you sure you want to completely delete this appointment?")) {
-      this.http.delete(`http://localhost:8081/api/ray/appointments/${id}`)
+      this.http.delete(`/api/ray/appointments/${id}`)
         .subscribe({
           next: () => {
             this.fetchAppointments();
@@ -392,7 +392,7 @@ export class DoctorCalendarComponent implements OnInit {
   }
 
   markAsDone(id: number) {
-    this.http.put(`http://localhost:8081/api/ray/appointments/${id}/mark-done`, {})
+    this.http.put(`/api/ray/appointments/${id}/mark-done`, {})
       .subscribe({
         next: () => {
           this.fetchAppointments();
@@ -431,7 +431,7 @@ export class DoctorCalendarComponent implements OnInit {
       payload.doctorId = this.doctors[0].id;
     }
 
-    this.http.post('http://localhost:8081/api/ray/appointments/walk-in', payload)
+    this.http.post('/api/ray/appointments/walk-in', payload)
       .subscribe({
         next: (res: any) => {
           this.closeWalkInModal();

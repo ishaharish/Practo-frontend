@@ -26,7 +26,7 @@ export class DoctorReportsComponent implements OnInit {
   }
 
   fetchReports() {
-    this.http.get<any>(`http://localhost:8081/api/ray/reports`)
+    this.http.get<any>(`/api/ray/reports`)
       .subscribe({
         next: (res) => {
           this.stats = {

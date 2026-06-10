@@ -21,7 +21,7 @@ export interface SurgeryEnquiryDto {
   providedIn: 'root'
 })
 export class SurgeryService {
-  private apiUrl = 'http://localhost:8081/api/surgeries';
+  private apiUrl = '/api/surgeries';
 
   constructor(private http: HttpClient) { }
 

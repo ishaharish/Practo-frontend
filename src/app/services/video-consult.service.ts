@@ -18,7 +18,7 @@ export interface VideoConsultQueue {
   providedIn: 'root'
 })
 export class VideoConsultService {
-  private apiUrl = 'http://localhost:8081/api/consultations';
+  private apiUrl = '/api/consultations';
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DoctorService {
-  private apiUrl = 'http://localhost:8081/api/doctors';
+  private apiUrl = '/api/doctors';
 
   constructor(private http: HttpClient) { }
 

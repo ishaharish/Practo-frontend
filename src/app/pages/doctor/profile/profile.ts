@@ -65,7 +65,7 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   submitStep1() {
-    this.http.post(`http://localhost:8081/api/doctors/onboard/step1`, this.registrationData)
+    this.http.post(`/api/doctors/onboard/step1`, this.registrationData)
       .subscribe({
         next: () => this.currentStep++,
         error: (err) => console.error(err)
@@ -77,7 +77,7 @@ export class DoctorProfileComponent implements OnInit {
       ...this.establishmentData,
       ownEstablishment: this.establishmentType === 'own'
     };
-    this.http.post(`http://localhost:8081/api/doctors/onboard/step2`, payload)
+    this.http.post(`/api/doctors/onboard/step2`, payload)
       .subscribe({
         next: () => this.currentStep++,
         error: (err) => console.error(err)
@@ -94,7 +94,7 @@ export class DoctorProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('IdentityProof', this.selectedFile);
 
-    this.http.post(`http://localhost:8081/api/doctors/onboard/upload-proof`, formData)
+    this.http.post(`/api/doctors/onboard/upload-proof`, formData)
       .subscribe({
         next: () => {
           this.showProfileView = true;
@@ -105,7 +105,7 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   fetchProfile() {
-    this.http.get<any>(`http://localhost:8081/api/doctors/profile`)
+    this.http.get<any>(`/api/doctors/profile`)
       .subscribe({
         next: (res) => {
           this.doctorProfile = res;
@@ -137,7 +137,7 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   saveProfile() {
-    this.http.put(`http://localhost:8081/api/doctors/profile`, this.editData)
+    this.http.put(`/api/doctors/profile`, this.editData)
       .subscribe({
         next: () => {
           this.isEditing = false;
